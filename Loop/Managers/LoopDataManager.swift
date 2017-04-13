@@ -167,7 +167,7 @@ final class LoopDataManager {
             }
         }
 
-        if let carbStore = deviceDataManager.carbStore {
+        if let carbStore = deviceDataManager.carbStore, let insulinActionDuration = deviceDataManager.insulinActionDuration {
             if carbEffect == nil {
                 updateGroup.enter()
 
@@ -176,7 +176,8 @@ final class LoopDataManager {
                         self.deviceDataManager.logger.addError(error, fromSource: "CarbStore")
                         self.carbEffect = nil
                     } else {
-                        self.carbEffect = effects
+                        // Limit carb effects to DIA
+                        self.carbEffect = effects.filterDateRange(effectStartDate, effectStartDate.addingTimeInterval(insulinActionDuration))
                     }
 
                     updateGroup.leave()
