@@ -177,7 +177,7 @@ final class LoopDataManager {
                         self.carbEffect = nil
                     } else {
                         // Limit carb effects to DIA
-                        self.carbEffect = effects.filterDateRange(effectStartDate, effectStartDate.addingTimeInterval(insulinActionDuration))
+                        self.carbEffect = effects.filterDateRange(effectStartDate, Date.init(timeIntervalSinceNow: insulinActionDuration))
                     }
 
                     updateGroup.leave()
