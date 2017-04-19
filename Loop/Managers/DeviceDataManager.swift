@@ -247,7 +247,7 @@ final class DeviceDataManager: CarbStoreDelegate, DoseStoreDelegate {
                     return
                 }
 
-                let warningThresholds: [Double] = [10, 20, 30]
+                let warningThresholds: [Double] = [5, 20]
 
                 for threshold in warningThresholds {
                     if newVolume <= threshold && previousVolume > threshold {
@@ -755,7 +755,7 @@ final class DeviceDataManager: CarbStoreDelegate, DoseStoreDelegate {
         )
 
          carbStore = CarbStore(
-            defaultAbsorptionTimes: (fast: TimeInterval(hours: 2), medium: TimeInterval(hours: 3), slow: TimeInterval(hours: 4)),
+            defaultAbsorptionTimes: (fast: TimeInterval(hours: 2), medium: TimeInterval(hours: 3), slow: TimeInterval(hours: 5.5)),
             carbRatioSchedule: carbRatioSchedule,
             insulinSensitivitySchedule: insulinSensitivitySchedule
         )
